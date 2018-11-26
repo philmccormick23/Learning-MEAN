@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Cats</h1>
+    <img src="./cat.jpg" alt="car">
+    <% for (var x in cats) { %>
+        <h3>Name: <%= cats[x].name %></h3>
+        <h4>Email: <%= cats[x].email %></h4>
+        <h4>Age: <%= cats[x].age %></h4>
+        <hr>
+    <% } %>
+    
+</body>
+</html>

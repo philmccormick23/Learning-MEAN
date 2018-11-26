@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+    <button>Questions</button>
+    <p>Data:</p>
+    <script>
+        $(document).ready(function(){
+            $.get("https://opentdb.com/api.php?amount=10&type=multiple", displayQuestions);
+        })
+        function displayQuestions(data) {
+            console.log(data)
+            $('body').append(data.results[0].question);
+        }
+
+        
+        
+        
+            
+    </script>
+</body>
+</html>

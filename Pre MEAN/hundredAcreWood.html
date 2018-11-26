@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script> 
+        var tigger= {character : 'tigger'};
+        var winnieThePooh= {character : 'WinnieThePooh'};
+        var christopherRobin= {character : 'christopherRobin'};
+        var Kanga= {character='Kanga'};
+        var Eeyore= {character='Eeyore'};
+        var Heffalumps= {character='Heffalumps'};
+        var Owl= {character='Owl'};
+        var Piglet= {character='Piglet'};
+        var Bees= {character='Bees'};
+        var Rabbit= {character='Rabbit'};
+        var Gopher= {character='Gopher'};
+        
+        //north south
+        tigger.north = winnieThePooh;  //middle col
+        winnieThePooh.south = tigger;
+
+        winnieThePooh.north = christopherRobin;
+        christopherRobin.south = winnieThePooh;
+
+        christopherRobin.north = Kanga;
+        Kanga.south = christopherRobin;
+
+        Kanga.north = Eeyore;
+        Eeyore.south = Kanga;
+
+        Piglet.north = Owl; //left col
+        Owl.south = Piglet;
+
+        Bees.north = Rabbit; //right col
+        Rabbit.south = Bees;
+
+        //east west 
+
+        Eeyore.east = Heffalumps; //top row
+        Heffalumps.west = Eeyore;
+
+        Owl.east = christopherRobin; //middle row
+        christopherRobin.west = Owl;
+
+        christopherRobin.east = Rabbit;
+        Rabbit.west = christopherRobin;
+
+        Rabbit.east = Gopher;
+        Gopher.west = Rabbit;
+
+        Piglet.east = winnieThePooh; //bottom row
+        winnieThePooh.west = Piglet;
+        
+        winnieThePooh.east = Bees; 
+        Bees.west = winnieThePooh;
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h3>Here are the awesome Animals!</h3>
+            <% for (var x in fishData) { %>
+                <a href="/fishes/<%= fishData[x]._id %>"><h4>Animal Name: <%= fishData[x].name %></h4></a>
+                <a href="/fishes/edit/<%= fishData[x]._id %>">Edit</a>
+                <a href="/fishes/destroy/<%= fishData[x]._id %>">Destroy</a>
+                
+            <hr>
+            <% } %>
+    <a href='/new'>Create an Animal</a>
+    
+    
+    
+</body>
+</html>

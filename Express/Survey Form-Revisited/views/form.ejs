@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type ="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script type ="text/javascript">
+         $(document). ready(function (){
+            var socket  = io.connect();
+            $('#button').click(function(e){
+                    socket.emit('posting_form',{
+                            name:$('#name').val(),
+                            email:$('#email').val(),
+                })
+            });
+            socket.on( "posting_form", function (data){
+                console.log( 'The lucky number emitted by the server is '  + data.random_number );
+            });
+            socket.on("server_responded",function (data){
+                console.log("This is what server responsed : " + data.response);
+            })
+            socket.on("random_number",function (data){
+                console.log("This is what server responsed : " + data.random_number);
+            })
+        })
+    </script>
+</head>
+<body>
+    <h1>Survey Form</h1>
+    <form action='/users' method='post'>
+        Name: <input type='text' name='name' id='name'>
+        Email: <input type='text' name='email' id='email'>
+    </form>
+    <button id="button">Submit</button>
+    
+</body>
+</html>

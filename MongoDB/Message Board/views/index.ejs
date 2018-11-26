@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class='wrapper'>
+        <div class='title'>
+            <h1>The Dojo Message Board</h1>
+            <% if(messages.registration) { %>
+                <% for (var x of messages.registration) { %>
+                 <h3><%= x %></h3>
+                <% } %>
+            <% } %>
+        </div>
+
+        <div class='newMessage'>
+            <form action='/add' method='post'>
+                Name: <input type='text' name='name' placeholder="At least 4 characters">
+                <br>
+                Message: <input type='textarea' name='message' placeholder="At least 5 characters...">
+                <input type='submit' value='Post Message'>
+            </form>
+            <hr>
+        </div>
+    </div>
+    <div class='showMessage'>
+        <% for ( var x in posts){ %>
+        <h5>Name:
+            <%= posts[x].name %>
+        </h5>
+        <h5>Message:
+            <%= posts[x].message %>
+        </h5>
+        <div class='showComment'>
+            <% for (var y of posts[x].comments){ %>
+            <h5>
+                <%= y.name %>
+            </h5>
+            <p>
+                <%= y.text %>
+            </p>
+            <% } %>
+        </div>
+        <form action='/comment/<%=posts[x]._id%>' method='post'>
+            Name: <input type='text' name='name' placeholder="At least 4 characters">
+            <br>
+            Comment: <input type='text' name='text' placeholder="Add a comment">
+            <input type='submit' value='Submit Comment'>
+        </form>
+        <br>
+        <% } %>
+    </div>
+
+
+
+
+
+
+
+</body>
+
+</html>

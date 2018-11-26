@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Group Chat</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>    
+    <script type ="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script type ="text/javascript">
+         $(document). ready(function (){
+            // this triggers the connection event in our server!
+            var name = prompt("Your name:");
+            var socket  = io.connect();
+            
+            socket.emit('got_a_new_user',{name: name}); ///this gets your name from the prompt above (var name)
+
+            socket.on("user_connected", function (data){ //on your login, this indicates that you have been connected
+                document.getElementById("chat").innerHTML += `<span class="system">You have been connected</span><br>`
+            });
+
+            socket.on("new_user", function (data){ //this indicates to other people that (you) the new user has been connected
+                document.getElementById("chat").innerHTML += `<span class="system">New user ${data.user} has connected</span><br>`
+            });
+
+            socket.on('user_disconnected', function(data){
+                document.getElementById("chat").innerHTML += `<span class="system">${data.user} has disconnected</span><br>`
+            });
+            
+            socket.on('new_message', function(data){
+                document.getElementById("chat").innerHTML += `<span class="msg">${data.user}: ${data.message}</span><br>`
+            });
+            
+            $('#send').click(function (){
+                var message = document.getElementById('message').value;
+                document.getElementById('message').value = "";
+                socket.emit("message_clicked", {message: message});
+            });
+        })
+    </script>
+    <style>
+    </style>
+</head>
+<body>
+    <h1>Conversation Board</h1>
+    <input type="text" name="message" id="message">
+    <button id="send">Send</button>
+    <div id="chat"></div>
+
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function Deck() {
+            var suits = ["Spades", "Hearts", "Diamonds", "Clubs"];
+            var ranks = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"];
+            this.deck = [];
+            this.createDeck = function () {
+                for (var i = 0; i < suits.length; i++) {
+                    for (var j = 0; j < ranks.length; j++) {
+                        this.deck.push(ranks[j] + ' of ' + suits[i]);
+                    }
+                }
+                console.log(this.deck);
+            }
+
+            this.shuffle = function () {
+                var m = this.deck.length, t, i;
+                // While there remain elements to shuffle…
+                while (m) {
+                    // Pick a remaining element…
+                    i = Math.floor(Math.random() * m--);
+                    // And swap it with the current element.
+                    t = this.deck[m];
+                    this.deck[m] = this.deck[i];
+                    this.deck[i] = t;
+                }
+                console.log(this.deck);
+                return this.deck;
+            }
+
+            this.reset = function () {
+                this.deck = [];
+                this.createDeck();
+            }
+
+            this.deal = function (num) {
+                var dealtCard = [];
+                for (var i = 0; i < num; i++) {
+                    dealtCard.push(this.deck.pop());
+                }
+                console.log(dealtCard);
+                return dealtCard;
+            }
+        }
+
+        function Player (num) {
+            this.name=name;
+            this.hand=[];
+            this.discard = function() {
+                this.hand.splice(num,1);
+            }
+            this.takeCard = function() {
+                var takenCard = this.deck.deal(1)[0];
+	            this.hand.push(takenCard);
+            }
+        }
+
+
+        var newDeck = new Deck();
+        console.log(newDeck.createDeck());
+        newDeck.shuffle();
+        newDeck.deal(10);
+        var player1 = new Player;
+        var player2 = new Player;
+        var player3 = new Player;
+        player1.discard(8);
+        player1.takeCard();
+        
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>
